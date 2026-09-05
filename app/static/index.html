@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="az">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0b1020" />
+    <title>Toplu SMS Admin Panel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/app.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+
+    <main id="login-view" class="auth-shell">
+      <section class="auth-card">
+        <div class="brand-mark" aria-hidden="true"><span>✦</span></div>
+        <p class="eyebrow">SECURE OPERATIONS</p>
+        <h1>Toplu SMS<br /><em>Admin Panel</em></h1>
+        <p class="auth-subtitle">Müştərilərinizlə düzgün zamanda, düzgün mesajla əlaqə saxlayın.</p>
+        <form id="login-form" class="auth-form">
+          <label for="username">İstifadəçi adı</label>
+          <div class="input-wrap"><span class="input-icon">◉</span><input id="username" name="username" autocomplete="username" required /></div>
+          <label for="password">Parol</label>
+          <div class="input-wrap"><span class="input-icon">◆</span><input id="password" name="password" type="password" autocomplete="current-password" required /></div>
+          <div id="login-error" class="form-error" role="alert"></div>
+          <button class="button button-primary button-wide" type="submit"><span>Daxil ol</span><span class="button-arrow">→</span></button>
+        </form>
+        <p class="auth-footnote"><span class="status-dot"></span> Yalnız admin girişi</p>
+      </section>
+      <aside class="auth-aside">
+        <div class="aside-topline"><span class="live-dot"></span> SMS DELIVERY CONTROL</div>
+        <h2>Mesajlarınızın<br /><span>ritmini</span> idarə edin.</h2>
+        <p>Real Textbelt göndərişləri, ardıcıl queue sistemi və canlı nəticələr bir paneldə.</p>
+        <div class="mini-chart">
+          <div class="chart-label"><span>Göndəriş performansı</span><strong>1 / san</strong></div>
+          <div class="chart-bars"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+        <div class="aside-meta"><span>ENCRYPTED SESSION</span><span>●</span><span>E.164 VALIDATION</span></div>
+      </aside>
+    </main>
+
+    <main id="dashboard-view" class="dashboard-shell hidden">
+      <header class="topbar">
+        <div class="brand"><div class="brand-mark small"><span>✦</span></div><div><strong>Toplu SMS</strong><small>Admin Panel</small></div></div>
+        <div class="topbar-actions"><span class="secure-label"><span class="status-dot"></span> Təhlükəsiz sessiya</span><button id="logout-btn" class="button button-ghost">Çıxış <span>↗</span></button></div>
+      </header>
+
+      <div class="dashboard-content">
+        <section class="welcome-row">
+          <div><p class="eyebrow">İDARƏETMƏ MƏRKƏZİ</p><h1>Göndərişlərinizə <em>nəzarət edin.</em></h1><p class="muted">Kampaniya yaradın, izləyin və nəticələri bir baxışda görün.</p></div>
+          <div class="last-sync"><span class="live-dot"></span> Canlı monitorinq</div>
+        </section>
+
+        <section class="stats-grid" aria-label="Statistikalar">
+          <article class="stat-card"><div class="stat-icon icon-violet">⌁</div><div><span>Ümumi nömrə</span><strong id="stat-total">0</strong></div><small>Bütün kampaniyalar</small></article>
+          <article class="stat-card"><div class="stat-icon icon-green">✓</div><div><span>Uğurlu SMS</span><strong id="stat-sent">0</strong></div><small class="positive">Textbelt qəbul edib</small></article>
+          <article class="stat-card"><div class="stat-icon icon-red">×</div><div><span>Uğursuz SMS</span><strong id="stat-failed">0</strong></div><small class="negative">Nəticə tələb edir</small></article>
+          <article class="stat-card"><div class="stat-icon icon-amber">◌</div><div><span>Gözləyən SMS</span><strong id="stat-pending">0</strong></div><small>Queue-də gözləyir</small></article>
+        </section>
+
+        <section id="active-campaign-card" class="active-card hidden">
+          <div class="active-header"><div><span class="section-kicker"><span class="live-dot"></span> AKTİV GÖNDƏRİŞ</span><h2 id="active-title">Kampaniya göndərilir</h2></div><span id="active-status" class="badge badge-running">RUNNING</span></div>
+          <div class="progress-meta"><span id="progress-label">SMS göndərilir...</span><strong id="progress-percent">0%</strong></div>
+          <div class="progress-track"><div id="progress-fill" class="progress-fill"></div></div>
+          <div class="progress-numbers"><span><b id="progress-done">0</b> / <span id="progress-total">0</span> tamamlandı</span><span class="progress-breakdown"><i class="dot-green"></i> <b id="progress-sent">0</b> uğurlu &nbsp; <i class="dot-red"></i> <b id="progress-failed">0</b> uğursuz &nbsp; <i class="dot-amber"></i> <b id="progress-pending">0</b> gözləyir</span></div>
+          <div class="active-actions"><button id="pause-btn" class="button button-secondary">Ⅱ&nbsp; Pause</button><button id="stop-btn" class="button button-danger">■&nbsp; Stop</button></div>
+        </section>
+
+        <div class="workspace-grid">
+          <section class="panel composer-panel">
+            <div class="panel-heading"><div><span class="section-kicker">01 / AUDIENCE</span><h2>Nömrələri əlavə edin</h2></div><span class="panel-badge">E.164</span></div>
+            <p class="panel-help">Hər nömrəni yeni sətirdə yazın. Sistem formatı yoxlayacaq və təkrarları siləcək.</p>
+            <label class="field-label" for="numbers-input">Telefon nömrələri</label>
+            <textarea id="numbers-input" class="numbers-input" rows="7" placeholder="+9955XXXXXXXX&#10;+9955XXXXXXXX&#10;+9955XXXXXXXX"></textarea>
+            <div class="input-actions"><label class="file-button"><span>↥</span> .TXT və ya .CSV import <input id="file-input" type="file" accept=".txt,.csv,text/plain,text/csv" /></label><button id="validate-btn" class="button button-outline">Yoxla <span>→</span></button></div>
+            <div id="validation-summary" class="validation-summary hidden"></div>
+            <div id="invalid-list" class="invalid-list hidden"></div>
+
+            <div class="divider"></div>
+            <div class="panel-heading message-heading"><div><span class="section-kicker">02 / CONTENT</span><h2>Mesajınızı yazın</h2></div><span id="char-counter" class="char-counter">0 / 140</span></div>
+            <label class="field-label" for="message-input">SMS mesajı</label>
+            <textarea id="message-input" class="message-input" maxlength="140" rows="5" placeholder="Salam! Şirkətimizdən sizə yeni məlumat təqdim olunur."></textarea>
+            <div class="composer-footer"><span class="muted tiny">Maksimum 140 simvol</span><button id="send-btn" class="button button-primary" disabled>SMS-ləri göndər <span>→</span></button></div>
+          </section>
+
+          <section class="panel history-panel">
+            <div class="panel-heading"><div><span class="section-kicker">03 / ACTIVITY</span><h2>SMS tarixçəsi</h2></div><span id="campaign-count" class="count-label">0 kampaniya</span></div>
+            <div class="filter-row"><div class="search-box"><span>⌕</span><input id="history-search" placeholder="Nömrəyə görə axtar..." /></div><select id="status-filter"><option value="">Bütün statuslar</option><option value="completed">Tamamlandı</option><option value="running">Göndərilir</option><option value="paused">Pause</option><option value="stopped">Stop</option><option value="pending">Gözləyir</option></select></div>
+            <div id="history-list" class="history-list"><div class="empty-state"><div class="empty-icon">◫</div><strong>Hələ kampaniya yoxdur</strong><span>İlk SMS kampaniyanızı yaradın.</span></div></div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <div id="confirm-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="confirm-title">
+      <div class="modal-card"><button class="modal-close" data-close-modal>×</button><div class="modal-icon">✦</div><span class="section-kicker">GÖNDƏRİŞİ TƏSDİQLƏ</span><h2 id="confirm-title">SMS-ləri göndərmək istəyirsiniz?</h2><p><strong id="confirm-count">0</strong> nömrəyə mesaj göndəriləcək.</p><div id="confirm-message" class="confirm-message"></div><p class="muted modal-note"><span class="status-dot"></span> Göndəriş saniyədə maksimum 1 SMS sürəti ilə queue-ya salınacaq.</p><div class="modal-actions"><button class="button button-ghost" data-close-modal>İmtina</button><button id="confirm-send-btn" class="button button-primary">Göndər <span>→</span></button></div></div>
+    </div>
+    <div id="detail-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true"><div class="modal-card detail-modal-card"><button class="modal-close" data-close-modal>×</button><div id="detail-content"></div></div></div>
+    <div id="toast-region" class="toast-region" aria-live="polite"></div>
+    <script src="/static/app.js"></script>
+  </body>
+</html>
